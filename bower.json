@@ -6,8 +6,8 @@
   ],
   "description": "AnguarJS colorpicker with no dependencies required",
   "main": [
-            "js/color-picker.js",
-            "css/color-picker.css"
+            "js/angularjs-colorpicker.js",
+            "css/angularjs-colorpicker.css"
 	],
   "ignore": [
     "node_modules"

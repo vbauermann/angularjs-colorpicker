@@ -93,7 +93,9 @@
     -khtml-border-radius: 50%;
     width: 16px;
     height: 16px;
-    border: #222 solid 2px; }
+    border: #e0e0e0 solid 2px;
+    background-color: white;
+    cursor: pointer;}
   .color-picker .saturation-lightness {
     width: 230px;
     height: 130px;
@@ -162,7 +164,7 @@
       float: left;
       width: 40px;
       margin-left: 7px;
-      border: #a9a9a9 solid 1px;
+      border: #d0d0d0 solid 1px;
       padding: 1px; }
     .color-picker .hsla-text div, .color-picker .rgba-text div {
       float: left;
@@ -181,7 +183,7 @@
     .color-picker .hex-text input {
       float: left;
       width: 160px;
-      border: #a9a9a9 solid 1px;
+      border: #d0d0d0 solid 1px;
       padding: 1px; }
     .color-picker .hex-text div {
       text-align: center;

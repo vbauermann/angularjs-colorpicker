@@ -161,7 +161,7 @@ var colorPicker = angular.module('colorpicker', [])
 colorPicker.directive('colorPicker', ['$document', '$compile', 'ColorHelper', function ($document, $compile, ColorHelper) {
     return {
         restrict: 'A',
-        scope: { colorPickerModel: '=', colorPickerOutputFormat: '=' },
+        scope: { colorPickerModel: '=', colorPickerOutputFormat: '=', colorPickerOnChange: '<', colorPickerIdentifier: '=' },
         controller: ['$scope', function ($scope) {
             $scope.show = false;
             $scope.sAndLMax = {};
@@ -307,7 +307,10 @@ colorPicker.directive('colorPicker', ['$document', '$compile', 'ColorHelper', fu
                 element.val('');
             }
             if (scope.colorPickerOnChange === undefined) {
-                scope.colorPickerOnChange = function (color) { };
+                scope.colorPickerOnChange = function (prop) { };
+            }
+            if (scope.colorPickerIdentifier === undefined) {
+                scope.colorPickerIdentifier = null;
             }
             if (attr.colorPickerShowValue === undefined) {
                 attr.colorPickerShowValue = 'true';
@@ -403,7 +406,7 @@ colorPicker.directive('colorPicker', ['$document', '$compile', 'ColorHelper', fu
                     attr.colorPickerShowValue = 'true';
                     updateFromString(element.val());
                     scope.colorPickerModel = element.val();
-                    scope.colorPickerOnChange(scope.colorPickerModel);
+                    scope.colorPickerOnChange({ color: scope.colorPickerModel, identifier: scope.colorPickerIdentifier });
                 });
             }
 
@@ -414,7 +417,7 @@ colorPicker.directive('colorPicker', ['$document', '$compile', 'ColorHelper', fu
                     if (attr.colorPickerShowValue === 'true') {
                         element.val(scope.outputColor);
                     }
-                    scope.colorPickerOnChange(scope.colorPickerModel);
+                    scope.colorPickerOnChange({ color: scope.colorPickerModel, identifier: scope.colorPickerIdentifier });
                 });
             });
 
@@ -424,7 +427,7 @@ colorPicker.directive('colorPicker', ['$document', '$compile', 'ColorHelper', fu
                 updateFromString(scope.colorPickerModel);
                 $document.off('mousedown', mousedown);
                 angular.element(window).off('resize', resize);
-                scope.colorPickerOnChange(scope.colorPickerModel);
+                scope.colorPickerOnChange({ color: scope.colorPickerModel, identifier: scope.colorPickerIdentifier });
             };
 
             element.on('click', open);
